@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>札幌九日行程 2026/11</title>
+<style>
+:root{--bg:#f6f7f9;--fg:#1c2330;--mut:#667085;--card:#fff;--bd:#e3e6eb;--sight:#d6eafb;--food:#fde3cf;--tour:#e2d9f7;--shop:#fadcea;--night:#d9e1f7;--move:#e8ebee;--rest:#dff2e3;--warn:#fff3d1;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#12161d;--fg:#e8ebf0;--mut:#98a2b3;--card:#1b212b;--bd:#2c3441;--sight:#1d3b57;--food:#583a22;--tour:#3b3260;--shop:#58283f;--night:#27325a;--move:#2a313c;--rest:#25432c;--warn:#4a3f1c}}
+:root[data-theme="dark"]{--bg:#12161d;--fg:#e8ebf0;--mut:#98a2b3;--card:#1b212b;--bd:#2c3441;--sight:#1d3b57;--food:#583a22;--tour:#3b3260;--shop:#58283f;--night:#27325a;--move:#2a313c;--rest:#25432c;--warn:#4a3f1c}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 -apple-system,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;padding:16px 14px 40px;max-width:760px;margin-inline:auto}
+h1{font-size:21px;margin:4px 0}h2{font-size:16px;margin:26px 0 8px}.sub{color:var(--mut);font-size:13px}
+.leg{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.leg span{font-size:12px;padding:2px 9px;border-radius:99px;color:var(--fg)}
+.wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:10px;background:var(--card)}
+table{border-collapse:separate;border-spacing:3px;min-width:700px;width:100%}
+th{font-size:12px;color:var(--mut);font-weight:600;padding:4px}
+td,th.d{font-size:12px;padding:7px 6px;border-radius:7px;text-align:center;vertical-align:middle;line-height:1.35}
+th.d{background:var(--card);color:var(--fg);text-align:left;position:sticky;left:0;white-space:nowrap;min-width:64px}
+th.d b{display:block;font-size:13px}th.d i{font-style:normal;color:var(--mut);font-size:11px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:10px;margin:8px 0;padding:0 12px}
+summary{cursor:pointer;padding:11px 0;font-weight:600;list-style:none}summary::-webkit-details-marker{display:none}
+summary small{color:var(--mut);font-weight:400;margin-left:6px}
+.row{display:flex;gap:10px;padding:6px 0;border-top:1px solid var(--bd)}.row em{font-style:normal;flex:0 0 46px;font-size:12px;color:var(--mut);padding-top:2px}
+.tip{background:var(--warn);border-radius:8px;padding:8px 10px;margin:8px 0 12px;font-size:13px}
+.chk label{display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--bd);font-size:14px}.chk input{margin-top:5px}
+</style></head><body>
+<h1>札幌九日行程</h1>
+<div class="sub">2026/11/15(日) – 11/23(一)・已按日期重新編號</div>
+
+<h2>九日總覽圖</h2>
+<div class="leg" id="leg"></div>
+<div class="wrap"><table id="mx"></table></div>
+<div class="sub" style="margin-top:6px">← 左右滑動看完整表格</div>
+
+<h2>每日流程（點開看細節）</h2>
+<div id="days"></div>
+
+<h2>出發前待確認</h2>
+<div class="wrap chk" style="padding:4px 12px" id="chk"></div>
+
+<script>
+const T={sight:"景點",food:"美食",tour:"KKday",shop:"購物",night:"夜景/點燈",move:"交通",rest:"休息"};
+const P=["早上","中餐","下午","晚餐","飯後"];
+const D=[
+{d:"11/15 日",n:1,h:"抵達・熟悉環境",
+s:[["新千歲→札幌","move"],["狼湯(?)","food"],["寄放行李・中島公園","sight"],["Shogun Burger／奧芝商店","food"],["確認集合點・薄野街拍","night"]],
+x:["早上|新千歲出關，搭 JR 進札幌","中餐|狼湯（原表只寫此名，請確認）","下午|寄放行李、午餐、check in，往中島公園周邊逛","晚餐|Shogun Burger 或奧芝商店，提前排隊","飯後|先走一趟 KKday 集合地點；累了回飯店，不累拍薄野居酒屋街"],
+t:"先確認 11/19（8:45）與 11/21（7:20）兩天的集合點，早起日就不慌。"},
+{d:"11/16 一",n:2,h:"東區公園・日落・啤酒",
+s:[["莫埃來沼公園","sight"],["麵屋 貴一","food"],["諏訪神社・JR塔 T38 日落","sight"],["啤酒博物館 Lilac 19:00","food"],["博物館周邊／北三條廣場","night"]],
+x:["早上|莫埃來沼公園","中餐|麵屋 貴一","下午|諏訪神社 → 約 15:00 前上 JR 塔 T38 拍夕陽","晚餐|19:00 札幌啤酒博物館 Lilac","飯後|博物館周邊拍攝；市區可去紅磚露台旁北三條廣場"],
+t:"11 月中旬日落約 16:00，T38 要提早卡位。週一：啤酒博物館與莫埃來沼的玻璃金字塔常見週一休館，請先查營業日。"},
+{d:"11/17 二",n:3,h:"小樽一日",
+s:[["三角市場・船見坂・教會・祝津","sight"],["桂苑 燴麵","food"],["運河・堺町通・音樂盒","sight"],["若雞時代","food"],["運河夜景","night"]],
+x:["早上|JR 小樽 → 三角市場 → 船見坂 → 小樽教會 → 祝津展望台","中餐|桂苑 燴麵","下午|運河周邊、堺町通商店街、蒸氣時計、音樂盒店、出世廣場","晚餐|若雞時代","飯後|運河夜景，回札幌"],
+t:"祝津巴士班次少，先查時刻或改搭計程車。運河黃昏藍調約 16:15–17:00，可趁晚餐前拍。"},
+{d:"11/18 三",n:4,h:"市中心經典・蟹座",
+s:[["北海道大學","sight"],["marutaka 醬油拉麵","food"],["舊道廳・時計台・札幌工廠","sight"],["蟹座 kaniza 18:15","food"],["薄野・大通購物／宅店","shop"]],
+x:["早上|北海道大學","中餐|marutaka 醬油拉麵","下午|北海道廳舊本廳舍（紅磚）→ 札幌市時計台 → 札幌工廠紅磚外牆","晚餐|18:15 蟹座 kaniza","飯後|薄野・大通購物；宅店：丸大大樓、mandarake"],
+t:"動線由北到南，步行就能串起。蟹座請預留 17:45 前抵達的時間。"},
+{d:"11/19 四",n:5,h:"KKday 洞爺湖",
+s:[["KKday 洞爺湖一日（集合 8:45）","tour",3],["湯咖哩 syabazo","food"],["早睡","rest"]],
+x:["早上|8:45 集合，洞爺湖一日團（午餐依團行程）","晚餐|湯咖哩 syabazo","飯後|早點休息，明天 7:20 集合"],
+t:"回札幌時間依旅行團而定，晚餐店家先查營業時間與是否需排隊。"},
+{d:"11/20 五",n:6,h:"神宮・白色戀人・開幕夜",
+s:[["北海道神宮","sight"],["nagoyaka 亭 迴轉壽司","food"],["白色戀人公園","sight"],["鑓水商店 南蠻雞","food"],["大通市集＋點燈（藻岩山二選一）","night"]],
+x:["早上|北海道神宮","中餐|nagoyaka 亭 迴轉壽司","下午|白色戀人公園（工廠）、買紀念品","晚餐|kitchen Yarimizu 鑓水商店 南蠻雞","飯後|大通聖誕市集＋白色燈樹節；或改上藻岩山纜車（需先在 KKday 訂票）"],
+t:"神宮與白色戀人公園都在地下鐵東西線沿線，連著走很順。據網路資料 2026 聖誕市集自 11/20 起、11:00–21:00，所以 11/15–19 都還看不到，11/20 是開幕日。藻岩山與點燈同晚太趕，建議二選一，藻岩山可移到 11/22。"},
+{d:"11/21 六",n:7,h:"KKday 美瑛・青池",
+s:[["KKday 美瑛・白金青池（集合 7:20）","tour",3],["Genten 拉麵 sono2","food"],["大通市集＋點燈","night"]],
+x:["早上|7:20 集合，美瑛・白金青池一日團","晚餐|拉麵 Genten sono2","飯後|回札幌後逛大通市集與點燈（市集到 21:00）"],
+t:"週六人多；回程若較晚，先吃拉麵再去市集，或把市集留到 11/22。"},
+{d:"11/22 日",n:8,h:"彈性日・定山溪（暫定）",
+s:[["札幌站→定山溪","move"],["溫泉街・足湯","sight"],["返回札幌","move"],["貍小路 壽司丼","food"],["點燈／藻岩山（備案）","night"]],
+x:["早上|札幌站搭快速 7 巴士往定山溪","中餐|溫泉街散步、午餐","下午|搭巴士返回札幌","晚餐|貍小路 sushidonburi","飯後|南一條／駅前通點燈；或把藻岩山夜景放這晚"],
+t:"備案：天氣不佳改小樽補行程或市區點燈。出發前查好快速 7 巴士的時刻表。"},
+{d:"11/23 一",n:9,h:"返程",
+s:[["約 7:00 出發→機場 8:00","move"],["買土產・報到 → 11:55 起飛","shop",4]],
+x:["早上|約 7:00 前後從札幌站搭 JR 快速 Airport，約 8:00 抵新千歲","其後|買土產、報到，11:55 起飛"],
+t:"11/23 是日本勤勞感謝日，機場人多。前一晚先打包退房，行李能寄就寄。"}
+];
+const C=[
+"行程編號：原表 11/18、11/19 與 11/20、11/21 的 Day 順序顛倒，這裡已按日期改正",
+"11/20 是否為聖誕市集與點燈開幕日（以官方網站為準）",
+"11/16（週一）啤酒博物館、莫埃來沼金字塔的營業日",
+"11/15「狼湯」是哪一家／什麼項目",
+"藻岩山纜車：決定哪天上去，並先在 KKday 訂票",
+"定山溪快速 7 巴士的去回時刻",
+"訂位：蟹座 11/18 18:15、Lilac 11/16 19:00；熱門店準備排隊"
+];
+document.getElementById("leg").innerHTML=Object.keys(T).map(k=>`<span style="background:var(--${k})">${T[k]}</span>`).join("");
+let h="<tr><th></th>"+P.map(p=>`<th>${p}</th>`).join("")+"</tr>";
+D.forEach(o=>{h+=`<tr><th class="d"><b>${o.d}</b><i>Day ${o.n}</i></th>`+o.s.map(c=>`<td colspan="${c[2]||1}" style="background:var(--${c[1]})">${c[0]}</td>`).join("")+"</tr>"});
+document.getElementById("mx").innerHTML=h;
+document.getElementById("days").innerHTML=D.map(o=>`<details><summary>Day ${o.n}・${o.d}<small>${o.h}</small></summary>${o.x.map(l=>{const a=l.split("|");return `<div class="row"><em>${a[0]}</em><span>${a[1]}</span></div>`}).join("")}<div class="tip">${o.t}</div></details>`).join("");
+document.getElementById("chk").innerHTML=C.map(t=>`<label><input type="checkbox"><span>${t}</span></label>`).join("");
+</script></body></html>
